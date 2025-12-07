@@ -9,7 +9,7 @@ export const PERSONAL_INFO = {
   title: "艺术与视觉设计",
   email: "wangjingyao@example.com",
   intro: "融汇古典美学与严谨逻辑。探索视觉感知、文化传承与现代交互的交汇点，致力于在优雅与理性之间寻求平衡。",
-  education: "视觉传达设计硕士",
+  education: "视觉传达设计硕士化",
 };
 
 // ==========================================
@@ -26,7 +26,8 @@ export const CASE_STUDIES: CaseStudy[] = [
       inspiration: {
         title: "01 灵感",
         description: "源于自然的有机曲线——风拂过丝绸的动态与植物生长的韵律。这些元素象征着生命的代谢节奏。",
-        images: [{ src: "https://images.unsplash.com/photo-1516961642265-531546e84af2?q=80&w=1000&auto=format&fit=crop", alt: "自然灵感" }]
+        // 修改了这里：将网络图片 URL 换成了本地路径 /images/test-image.jpg
+        images: [{ src: "https://i.imgs.ovh/2025/12/07/CPgrw1.jpeg", alt: "自然灵感" }]
       },
       brainstorm: {
         title: "02 构思",
@@ -63,7 +64,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       inspiration: {
         title: "01 灵感",
         description: "研习宋画（如《韩熙载夜宴图》）的构图与设色。从古代建筑构件与传统器物中提取UI组件的形态。",
-        images: [{ src: "https://images.unsplash.com/photo-1628509439247-485e975d045c?q=80&w=1000&auto=format&fit=crop", alt: "历史参考" }]
+        images: [{ src: "https://i.imgs.ovh/2025/12/07/CPgfJb.png", alt: "历史参考" }]
       },
       brainstorm: {
         title: "02 构思",
