@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { ProjectPhase as ProjectPhaseType, ImageAsset } from '../types';
+import { ProjectPhase as ProjectPhaseType } from '../types';
 import { motion } from 'framer-motion';
 import Lightbox from './Lightbox';
 
@@ -36,18 +36,18 @@ const ProjectPhase: React.FC<Props> = ({ phase, index }) => {
           {phase.images.map((img, idx) => (
             <div 
               key={idx} 
-              className="group relative overflow-hidden bg-white shadow-sm border border-[#E7E5E4] cursor-zoom-in"
+              className="group relative overflow-hidden bg-white shadow-sm border border-[#E7E5E4] cursor-zoom-in flex justify-center items-center"
               onClick={() => setLightbox({ isOpen: true, index: idx })}
             >
               <img 
                 src={img.src} 
                 alt={img.alt} 
-                className="w-full h-auto object-cover transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
+                className="w-full h-auto max-h-[80vh] object-contain transition-all duration-1000 group-hover:opacity-95"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="p-4 bg-white border-t border-[#F5F2EB]">
-                 <p className="text-xs text-[#A8A29E] tracking-widest uppercase text-center font-sans font-medium">{img.alt}</p>
+              <div className="absolute bottom-4 right-4 p-2 bg-white/80 backdrop-blur opacity-0 group-hover:opacity-100 transition-opacity">
+                 <p className="text-[10px] text-[#A8A29E] tracking-widest uppercase font-sans">{img.alt}</p>
               </div>
             </div>
           ))}

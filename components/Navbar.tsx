@@ -9,11 +9,19 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isOpen]);
 
   const navLinks = [
     { name: '首页', href: '#hero' },
@@ -29,7 +37,7 @@ const Navbar: React.FC = () => {
     e.preventDefault();
     const element = document.querySelector(href);
     if (element) {
-      const offset = 80;
+      const offset = 70;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -44,12 +52,12 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-700 ${scrolled ? 'bg-[#F9F8F6]/90 backdrop-blur-md py-4 border-b border-[#E7E5E4]' : 'bg-transparent py-8'}`}>
-      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-[#F9F8F6]/95 backdrop-blur-xl py-3 border-b border-[#E7E5E4]' : 'bg-transparent py-6 md:py-8'}`}>
+      <div className="container mx-auto px-5 md:px-12 flex justify-between items-center">
         <a 
           href="#hero" 
           onClick={(e) => handleClick(e, '#hero')} 
-          className="group text-2xl font-serif font-bold tracking-tight text-[#1C1917]"
+          className="group text-xl md:text-2xl font-serif font-bold tracking-tight text-[#1C1917]"
         >
           {PERSONAL_INFO.enName}
           <span className="text-[#C5A059] group-hover:ml-1 transition-all duration-300">.</span>
@@ -72,25 +80,35 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <button 
-          className="lg:hidden z-50 focus:outline-none p-2"
+          className="lg:hidden z-[60] focus:outline-none p-2 -mr-2"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
         >
-          {isOpen ? <X className="w-6 h-6 text-[#1C1917]" /> : <Menu className="w-6 h-6 text-[#1C1917]" />}
+          <div className="relative w-6 h-6 flex flex-col justify-center items-center">
+            <span className={`block w-6 h-[1.5px] bg-[#1C1917] transition-all duration-500 ${isOpen ? 'rotate-45 translate-y-[1.5px]' : '-translate-y-1'}`}></span>
+            <span className={`block w-6 h-[1.5px] bg-[#1C1917] transition-all duration-500 ${isOpen ? '-rotate-45 -translate-y-[0px]' : 'translate-y-1'}`}></span>
+          </div>
         </button>
 
         {/* Mobile Menu Overlay */}
-        <div className={`fixed inset-0 bg-[#F9F8F6] z-40 transform transition-transform duration-700 ease-[cubic-bezier(0.83, 0, 0.17, 1)] ${isOpen ? 'translate-x-0' : 'translate-x-full'} lg:hidden flex flex-col items-center justify-center space-y-8`}>
-            {navLinks.map((link, idx) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleClick(e, link.href)}
-                className={`text-3xl font-serif text-[#1C1917] hover:text-[#C5A059] transition-all duration-500 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-                style={{ transitionDelay: `${idx * 50}ms` }}
-              >
-                {link.name}
-              </a>
-            ))}
+        <div className={`fixed inset-0 bg-[#F9F8F6] z-50 transform transition-all duration-700 ease-[cubic-bezier(0.83, 0, 0.17, 1)] ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'} lg:hidden flex flex-col items-center justify-center`}>
+            <div className="flex flex-col items-center space-y-6 md:space-y-8">
+              {navLinks.map((link, idx) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => handleClick(e, link.href)}
+                  className={`text-2xl md:text-3xl font-serif text-[#1C1917] hover:text-[#C5A059] transition-all duration-500 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                  style={{ transitionDelay: `${isOpen ? idx * 50 + 200 : 0}ms` }}
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+            
+            <div className={`absolute bottom-12 text-center transition-all duration-700 delay-500 ${isOpen ? 'opacity-30' : 'opacity-0'}`}>
+               <p className="text-[10px] tracking-[0.5em] uppercase text-[#1C1917]">{PERSONAL_INFO.portfolioTitle}</p>
+            </div>
         </div>
       </div>
     </nav>

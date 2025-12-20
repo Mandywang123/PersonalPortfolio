@@ -67,9 +67,7 @@ const Lightbox: React.FC<LightboxProps> = ({ images, currentIndex, isOpen, onClo
             />
             <div className="mt-6 text-center">
               <p className="text-white text-lg font-serif">{images[currentIndex].alt}</p>
-              {images[currentIndex].caption && (
-                <p className="text-white/60 text-sm mt-2 font-light italic">{images[currentIndex].caption}</p>
-              )}
+              {/* 移除了介绍文字 caption */}
               <div className="mt-4 text-white/30 text-xs tracking-widest uppercase">
                 {currentIndex + 1} / {images.length}
               </div>

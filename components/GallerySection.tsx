@@ -42,7 +42,7 @@ const GallerySection: React.FC<Props> = ({ id, title, subtitle, items, bgColor =
             {subtitle && <p className="text-[#C5A059] tracking-[0.2em] uppercase text-xs font-bold">{subtitle}</p>}
         </motion.div>
 
-        <div className={`grid grid-cols-1 ${getGridCols()} gap-12 items-start`}>
+        <div className={`grid grid-cols-1 ${getGridCols()} gap-16 items-start`}>
           {items.map((item, itemIdx) => (
             <motion.div 
                 key={item.id} 
@@ -53,27 +53,27 @@ const GallerySection: React.FC<Props> = ({ id, title, subtitle, items, bgColor =
                 transition={{ duration: 0.6, delay: itemIdx * 0.1 }}
                 onClick={() => openLightbox(item.images, 0)}
             >
-              <div className="mb-6 overflow-hidden">
+              <div className="mb-6 overflow-hidden flex justify-center">
                 {item.images.slice(0, 1).map((img, idx) => (
-                   <div key={idx} className="relative overflow-hidden bg-[#E7E5E4]">
+                   /* 固定高度容器，宽度随比例 */
+                   <div key={idx} className="relative h-[300px] md:h-[400px] bg-white border border-[#E7E5E4] shadow-sm overflow-hidden flex items-center justify-center">
                       <img 
                         src={img.src} 
                         alt={img.alt} 
-                        className="w-full h-auto block grayscale-[20%] group-hover:grayscale-0 transition-all duration-1000 transform group-hover:scale-105"
+                        className="h-full w-auto block grayscale-[20%] group-hover:grayscale-0 transition-all duration-1000 transform group-hover:scale-105"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                         <span className="px-6 py-2 bg-white/90 backdrop-blur-sm text-[#1C1917] text-xs tracking-widest uppercase font-sans border border-[#E7E5E4]">查看详情</span>
+                         <span className="px-6 py-2 bg-white/90 backdrop-blur-sm text-[#1C1917] text-[10px] tracking-widest uppercase font-sans border border-[#E7E5E4]">VIEW FULL SIZE</span>
                       </div>
                    </div>
                 ))}
               </div>
               <div className="mt-2 text-center">
                 <h3 className="text-xl font-serif text-[#292524] mb-2">{item.title}</h3>
-                <div className="w-8 h-[1px] bg-[#C5A059] mx-auto mb-3 opacity-50"></div>
-                <p className="text-xs text-[#78716c] uppercase tracking-widest">{item.medium}</p>
-                {item.description && <p className="text-sm text-[#57534E] mt-3 max-w-xs mx-auto font-light leading-relaxed">{item.description}</p>}
+                <div className="w-6 h-[1px] bg-[#C5A059]/40 mx-auto mb-3"></div>
+                <p className="text-[10px] text-[#78716c] uppercase tracking-widest">{item.medium}</p>
               </div>
             </motion.div>
           ))}
