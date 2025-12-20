@@ -1,7 +1,29 @@
+
 export interface ImageAsset {
   src: string;
   alt: string;
   caption?: string;
+}
+
+export interface Artwork {
+  id: string;
+  title: string;
+  year: string; // Added year property
+  category: string;
+  description: string;
+  image: string;
+}
+
+export interface ArtworkGroup {
+  groupTitle: string;
+  artworks: Artwork[];
+}
+
+export interface PortfolioModule {
+  id: string;
+  moduleTitle: string;
+  moduleEnTitle: string;
+  groups: ArtworkGroup[];
 }
 
 export interface ProjectPhase {
@@ -14,8 +36,8 @@ export interface CaseStudy {
   id: string;
   title: string;
   subtitle: string;
-  tags: string[];
   description: string;
+  tags: string[];
   phases: {
     inspiration: ProjectPhase;
     brainstorm: ProjectPhase;
@@ -28,7 +50,6 @@ export interface CaseStudy {
 export interface GalleryItem {
   id: string;
   title: string;
-  category: string;
   medium: string;
   description?: string;
   images: ImageAsset[];

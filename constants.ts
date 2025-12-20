@@ -1,202 +1,136 @@
-import { CaseStudy, GalleryItem } from './types';
 
-// ==========================================
-// 个人信息 (PERSONAL INFO)
-// ==========================================
+import { PortfolioModule } from './types';
+
+export const PORTFOLIO_DATA: PortfolioModule[] = [
+  {
+    id: "module-chinese-painting",
+    moduleTitle: "国画",
+    moduleEnTitle: "Chinese Painting",
+    groups: [
+      {
+        groupTitle: "写意 · Ink Wash",
+        artworks: [
+          { id: "cp-x-1", title: "山水清音", year: "2023", category: "写意", image: "https://i.imgs.ovh/2025/12/20/ClUOfQ.jpeg", description: "笔墨恣意，以湿墨表现江南烟雨的朦胧感，探索传统水墨在宣纸上的随机渗出，构建一种极简的意象空间。" },
+          { id: "cp-x-2", title: "疏影横斜", year: "2022", category: "写意", image: "https://i.imgs.ovh/2025/12/20/ClU0TH.jpeg", description: "以枯笔勾勒梅枝，强调骨法用笔。留白处不仅是空间，更是呼吸。在似与不似之间寻找万物的内在神韵。" },
+          { id: "cp-x-3", title: "林间归客", year: "2024", category: "写意", image: "https://images.unsplash.com/photo-1495573428282-e56598c7dc4a?q=80&w=1200", description: "层层积墨，表现山体之厚重。画面追求苍润兼济，体现出对古典文人生活状态的向往与精神归宿的艺术化处理。" },
+          { id: "cp-x-4", title: "幽壑听泉", year: "2023", category: "写意", image: "https://images.unsplash.com/photo-1577083288073-40892c0860a4?q=80&w=1200", description: "运用泼墨技法，云雾穿插于奇峰之间。虚实结合的构图，旨在引发观者对自然无尽奥秘的深层审美联想与共鸣。" },
+        ]
+      },
+      {
+        groupTitle: "工笔 · Meticulous",
+        artworks: [
+          { id: "cp-g-1", title: "牡丹富贵", year: "2022", category: "工笔", image: "https://i.imgs.ovh/2025/12/20/ClT3YA.jpeg", description: "三矾九染，色不碍墨，墨不碍色。极力刻画花瓣的丝滑质感，在极致的细腻中展现大自然繁华盛开的生命张力。" },
+          { id: "cp-g-2", title: "锦绣山禽", year: "2023", category: "工笔", image: "https://images.unsplash.com/photo-1616744983058-29367469a84b?q=80&w=1200", description: "精准的铁线描勾勒禽鸟羽毛，敷色明艳而雅致。通过显微镜式的观察，将自然物象转化为高度秩序化的艺术语言。" },
+        ]
+      },
+      {
+        groupTitle: "书法 · Calligraphy",
+        artworks: [
+          { id: "cp-s-1", title: "兰亭序研究", year: "2024", category: "书法", image: "https://images.unsplash.com/photo-1669837262453-e380e2277d34?q=80&w=1200", description: "临习王羲之行书，体悟笔尖在纸上的行走韵律。起承转合间，是对魏晋风骨的视觉复刻与当代书法精神的解读。" },
+          { id: "cp-s-2", title: "草书意向", year: "2023", category: "书法", image: "https://images.unsplash.com/photo-1628151225852-7e040c57173e?q=80&w=1200", description: "狂草连绵，线条粗细对比剧烈。如交响乐般的节奏变化，表达了艺术家纯粹的情绪释放，打破汉字的具象束缚。" },
+        ]
+      }
+    ]
+  },
+  {
+    id: "module-illustration",
+    moduleTitle: "插画",
+    moduleEnTitle: "Illustration",
+    groups: [
+      {
+        groupTitle: "人物 · Portraits",
+        artworks: [
+          { id: "ill-p-1", title: "面孔 · 忧郁", year: "2023", category: "人物", image: "https://images.unsplash.com/photo-1596707328678-b649d264f331?q=80&w=1200", description: "通过低饱和度的冷色调，刻画现代都市人内心的孤寂。眼神的刻画是视觉核心，传递出一种无声的对白。" },
+          { id: "ill-p-2", title: "市井众生", year: "2022", category: "人物", image: "https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?q=80&w=1200", description: "运用速写式的线条配合平涂色彩，捕捉街头小贩的动作瞬间。人物姿态虽然卑微，却洋溢着鲜活的生命美感。" },
+        ]
+      },
+      {
+        groupTitle: "静物 · Still Life",
+        artworks: [
+          { id: "ill-sl-1", title: "午后阳光", year: "2023", category: "静物", image: "https://images.unsplash.com/photo-1608691535783-501b2a953503?q=80&w=1200", description: "研究光线在陶瓷与玻璃表面的反射规律。通过细微的明暗变化，赋予平凡器物以神圣感，静谧中带有哲思。" },
+          { id: "ill-sl-2", title: "残花", year: "2022", category: "静物", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=1200", description: "凋零的花朵也是美的载体。通过对枯萎形态的精细刻画，引发观者对时间流逝与生命周期的感悟，凄美而动人。" },
+          { id: "ill-sl-3", title: "早餐记忆", year: "2024", category: "静物", image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=1200", description: "色彩温暖且丰富，强调食物的纹理质感。画面充满生活气息，通过物件的堆叠重构出一幅温馨的家庭早晨图景。" },
+          { id: "ill-sl-4", title: "几何重组", year: "2023", category: "静物", image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1200", description: "将静物进行立体主义式的拆解，重新组合。利用高饱和色块建立视觉张力，探索形状与空间在二维平面上的平衡。" },
+        ]
+      },
+      {
+        groupTitle: "场景 · Environments",
+        artworks: [
+          { id: "ill-sc-1", title: "赛博北京", year: "2024", category: "场景", image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1200", description: "将传统古建筑与霓虹灯、飞行器结合。在古老文明与未来科技的冲撞中，建立一套充满东方韵味的科幻视觉语言。" },
+          { id: "ill-sc-2", title: "森林深处", year: "2023", category: "场景", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200", description: "追求如梦境般的氛围，光影斑驳。绿色调的层级变化极大地丰富了画面深度，营造出一种让人沉浸的自然秘境。" },
+          { id: "ill-sc-3", title: "荒野列车站", year: "2022", category: "场景", image: "https://images.unsplash.com/photo-1518544866385-b59c77e43697?q=80&w=1200", description: "空旷的荒漠中矗立着破旧的站台。地平线的透视感增强了孤独感，通过宏大的场景衬托出渺小个体在时空中的漂泊感。" },
+        ]
+      }
+    ]
+  },
+  {
+    id: "module-sketch",
+    moduleTitle: "素描",
+    moduleEnTitle: "Sketches",
+    groups: [
+      {
+        groupTitle: "长期习作 · Academy",
+        artworks: [
+          { id: "sk-1", title: "解剖研究", year: "2022", category: "长期素描", image: "https://images.unsplash.com/photo-1595168393582-89518d6bf961?q=80&w=1200", description: "严谨的解剖学观察，准确还原骨骼与肌肉的联动关系。在理性的排线中，寻找人体形态最本质的艺术美感。" },
+          { id: "sk-2", title: "光影习作", year: "2021", category: "长期素描", image: "https://images.unsplash.com/photo-1578301978018-3005759f48f7?q=80&w=1200", description: "针对石膏像的复杂光影研究。通过五大调子的精准控制，塑造出极强的体积感，展示了扎实的古典写实功底。" },
+        ]
+      }
+    ]
+  },
+  {
+    id: "module-design",
+    moduleTitle: "设计",
+    moduleEnTitle: "Graphic Design",
+    groups: [
+      {
+        groupTitle: "折页 · Layouts",
+        artworks: [
+          { id: "des-z-1", title: "折页艺术", year: "2023", category: "折页", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1200", description: "探索纸张折叠带来的空间叙事。利用特种纸张的触感与巧妙的模切设计，让信息在翻阅过程中逐步展开。" },
+          { id: "des-z-2", title: "自然之语", year: "2023", category: "折页", image: "https://images.unsplash.com/photo-1632515949504-245362df5f4a?q=80&w=1200", description: "为环保机构设计的品牌折页。以极简的图形语言与环保油墨，传达人与自然和谐共生的品牌核心价值。" },
+        ]
+      },
+      {
+        groupTitle: "手册 · Brand Identity",
+        artworks: [
+          { id: "des-s-1", title: "VI 手册 01", year: "2024", category: "手册", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1200", description: "完整的品牌识别系统手册，包含标志应用规范、标准字及色彩体系。体现了严谨的设计逻辑与极高的商业落地性。" },
+          { id: "des-s-2", title: "VI 手册 02", year: "2023", category: "手册", image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1200", description: "针对数字科技企业的动态VI设计。强调品牌在不同屏幕终端的自适应性与品牌调性的高度一致化。" },
+          { id: "des-s-3", title: "企业年报", year: "2023", category: "手册", image: "https://images.unsplash.com/photo-1572059002124-e23414738961?q=80&w=1200", description: "将繁杂的数据可视化处理。利用大面积的留白与精致的版式编排，让原本枯燥的年度报告变成一种视觉享受。" },
+          { id: "des-s-4", title: "品牌故事书", year: "2024", category: "手册", image: "https://images.unsplash.com/photo-1507643179173-617d67456adb?q=80&w=1200", description: "通过精美的插画与排版，讲述品牌从创立至今的感人历程。在叙事中建立品牌温度，增强用户的情感链接。" },
+        ]
+      },
+      {
+        groupTitle: "导览 · Posters",
+        artworks: [
+          { id: "des-p-1", title: "城市漫步海报", year: "2023", category: "导览海报", image: "https://images.unsplash.com/photo-1563969562-b7e3f8981329?q=80&w=1200", description: "打破传统海报的平面限制，通过折叠方式转变为便携式地图。兼具美学欣赏价值与实用的向导功能。" },
+          { id: "des-p-2", title: "艺术季海报", year: "2022", category: "导览海报", image: "https://images.unsplash.com/photo-1518544866385-b59c77e43697?q=80&w=1200", description: "色彩明快，线条灵动。通过图形的错位重叠，传达出艺术节的多元与包容，在街头形成极强的视觉吸引力。" },
+          { id: "des-p-3", title: "博物馆折叠卡", year: "2024", category: "导览海报", image: "https://images.unsplash.com/photo-1508261301902-69a455b71932?q=80&w=1200", description: "为古典美术馆设计的导览系统。模仿古代卷轴的开启方式，在现代印刷工艺中复现那种庄重的艺术仪式感。" },
+        ]
+      }
+    ]
+  },
+  {
+    id: "module-3d",
+    moduleTitle: "3D项目",
+    moduleEnTitle: "3D Projects",
+    groups: [
+      {
+        groupTitle: "虚拟建模 · Modeling",
+        artworks: [
+          { id: "3d-1", title: "未来居住空间", year: "2024", category: "场景建模", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200", description: "运用C4D与Octane渲染器，研究光影在不同材质表面的物理反射。在虚拟空间中构建一个充满禅意的未来起居室。" },
+          { id: "3d-2", title: "机械心脏", year: "2023", category: "硬表面建模", image: "https://images.unsplash.com/photo-1633167606207-d840b5070fc2?q=80&w=1200", description: "极其复杂的金属零件拼接，模拟工业时代的蒸汽动力美学。精细的划痕与磨损纹理，赋予了虚拟模型以时间的沉淀感。" },
+        ]
+      }
+    ]
+  }
+];
+
 export const PERSONAL_INFO = {
   name: "王菁瑶",
   enName: "Wang Jingyao",
-  title: "艺术与视觉设计",
+  title: "艺术教育者 / 跨界美术作品集",
   email: "wangjingyao@example.com",
-  intro: "融汇古典美学与严谨逻辑。探索视觉感知、文化传承与现代交互的交汇点，致力于在优雅与理性之间寻求平衡。",
-  education: "视觉传达设计硕士化",
+  intro: "深耕国画领域，兼修素描造型、平面设计、插画创作、 3D 建模和摄影，引导学生感知传统美学与现代艺术的交融之美，激发跨文化艺术表达力。",
+  education: "苏州大学 中国画专业 · 学士",
+  portfolioTitle: "Portfolio Selection",
+  year: "2024 - 2025",
 };
-
-// ==========================================
-// 项目展示 (CASE STUDIES)
-// ==========================================
-export const CASE_STUDIES: CaseStudy[] = [
-  {
-    id: "project-1",
-    title: "轻盈 · 瘦身保健品品牌视觉全案",
-    subtitle: "Brand Visual Identity for Slimming Health Products",
-    tags: ["品牌识别", "包装设计", "视觉系统"],
-    description: "本项目旨在重塑针对年轻群体的保健品品牌形象。超越单纯的包装设计，传达“轻盈”的哲学。通过流动的线条与负空间解构视觉重量，消除与膳食补充剂相关的心理负担。",
-    phases: {
-      inspiration: {
-        title: "01 灵感",
-        description: "源于自然的有机曲线——风拂过丝绸的动态与植物生长的韵律。这些元素象征着生命的代谢节奏。",
-        // 修改了这里：将网络图片 URL 换成了本地路径 /images/test-image.jpg
-        images: [{ src: "https://i.imgs.ovh/2025/12/07/CPgrw1.jpeg", alt: "自然灵感" }]
-      },
-      brainstorm: {
-        title: "02 构思",
-        description: "探索“纯净”、“流动”、“焕新”的抽象概念。从具象符号迭代至最终的流体抽象形态，推导过程注重形态的呼吸感。",
-        images: [{ src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop", alt: "草图与思维导图" }]
-      },
-      research: {
-        title: "03 调研",
-        description: "市场分析显示竞品多采用高饱和度的医美风格。我们采取差异化策略，运用莫兰迪色系（鼠尾草绿、米白、淡粉）营造高端健康感而非临床治疗感。",
-        images: [{ src: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000&auto=format&fit=crop", alt: "色彩分析" }]
-      },
-      experiments: {
-        title: "04 实验",
-        description: "字体实验对比了古典衬线体与现代无衬线体的张力。材质研究专注于包装表面的触感体验，寻找类肤质感的纸张。",
-        images: [{ src: "https://images.unsplash.com/photo-1507643179173-617d67456adb?q=80&w=1000&auto=format&fit=crop", alt: "视觉实验" }]
-      },
-      application: {
-        title: "05 应用",
-        description: "最终的识别系统应用于包装、数字媒体及周边物料。建立了一套静谧而权威的视觉语言，在货架上形成独特的视觉安宁。",
-        images: [
-          { src: "https://images.unsplash.com/photo-1632515949504-245362df5f4a?q=80&w=1000&auto=format&fit=crop", alt: "包装设计" },
-          { src: "https://images.unsplash.com/photo-1563969562-b7e3f8981329?q=80&w=1000&auto=format&fit=crop", alt: "品牌物料" }
-        ]
-      }
-    }
-  },
-  {
-    id: "project-2",
-    title: "墨韵霓裳 · 国画汉服换装游戏UI",
-    subtitle: "UI Design for Traditional Chinese Painting Style Game",
-    tags: ["UI/UX", "游戏界面", "文化遗产"],
-    description: "致力于传统服饰文化的数字化交互体验。挑战在于将工笔画的细腻笔触转化为功能性的现代游戏界面，同时不破坏沉浸感。",
-    phases: {
-      inspiration: {
-        title: "01 灵感",
-        description: "研习宋画（如《韩熙载夜宴图》）的构图与设色。从古代建筑构件与传统器物中提取UI组件的形态。",
-        images: [{ src: "https://i.imgs.ovh/2025/12/07/CPgfJb.png", alt: "历史参考" }]
-      },
-      brainstorm: {
-        title: "02 构思",
-        description: "重定义交互隐喻：选择即“妆点”，导航即“展卷”。UI动效模拟展卷阅览与研磨颜料的物理动作，赋予操作以仪式感。",
-        images: [{ src: "https://images.unsplash.com/photo-1531913764164-f85c52e6e654?q=80&w=1000&auto=format&fit=crop", alt: "交互草图" }]
-      },
-      research: {
-        title: "03 调研",
-        description: "分析竞品的“视觉噪点”。确立“留白”为核心UI原则，减少装饰性干扰，以突显服饰本身的精美细节。",
-        images: [{ src: "https://images.unsplash.com/photo-1518544866385-b59c77e43697?q=80&w=1000&auto=format&fit=crop", alt: "布局分析" }]
-      },
-      experiments: {
-        title: "04 实验",
-        description: "测试宣纸纹理在屏幕上的数字渲染效果。优化按钮状态，使其交互反馈类似墨迹晕染而非机械点击。",
-        images: [{ src: "https://images.unsplash.com/photo-1582201385419-4564532b6e1f?q=80&w=1000&auto=format&fit=crop", alt: "纹理测试" }]
-      },
-      application: {
-        title: "05 应用",
-        description: "最终UI实现包含衣橱系统、剧情对话及图标设计。构建了一套连接古今、雅俗共赏的交互界面。",
-        images: [
-          { src: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop", alt: "主界面" },
-          { src: "https://images.unsplash.com/photo-1596464716127-f9a865e0e193?q=80&w=1000&auto=format&fit=crop", alt: "细节展示" }
-        ]
-      }
-    }
-  }
-];
-
-// ==========================================
-// 国画作品 (CHINESE PAINTING)
-// ==========================================
-export const CHINESE_PAINTINGS: GalleryItem[] = [
-  {
-    id: "cp-1",
-    title: "四季花卉条屏",
-    category: "纸本水墨",
-    medium: "传统国画",
-    images: [
-      { src: "https://images.unsplash.com/photo-1526494631346-635293414088?q=80&w=600&auto=format&fit=crop", alt: "春兰" },
-      { src: "https://images.unsplash.com/photo-1628151225852-7e040c57173e?q=80&w=600&auto=format&fit=crop", alt: "夏荷" },
-      { src: "https://images.unsplash.com/photo-1577083288073-40892c0860a4?q=80&w=600&auto=format&fit=crop", alt: "秋菊" },
-      { src: "https://images.unsplash.com/photo-1663183574883-93d39029d5d2?q=80&w=600&auto=format&fit=crop", alt: "冬梅" }
-    ]
-  },
-  {
-    id: "cp-2",
-    title: "幽兰图",
-    category: "写意",
-    medium: "水墨",
-    images: [{ src: "https://images.unsplash.com/photo-1669837262453-e380e2277d34?q=80&w=800&auto=format&fit=crop", alt: "兰花" }]
-  },
-  {
-    id: "cp-3",
-    title: "枝头翠鸟",
-    category: "工笔",
-    medium: "花鸟画",
-    images: [{ src: "https://images.unsplash.com/photo-1616744983058-29367469a84b?q=80&w=800&auto=format&fit=crop", alt: "花鸟工笔" }]
-  },
-  {
-    id: "cp-4",
-    title: "文人雅集",
-    category: "人物画",
-    medium: "水墨",
-    images: [{ src: "https://images.unsplash.com/photo-1580121441575-41bcb5c6b47c?q=80&w=800&auto=format&fit=crop", alt: "人物" }]
-  },
-  {
-    id: "cp-5",
-    title: "山水清音",
-    category: "山水画",
-    medium: "写意山水",
-    images: [
-      { src: "https://images.unsplash.com/photo-1495573428282-e56598c7dc4a?q=80&w=1000&auto=format&fit=crop", alt: "山水一" },
-      { src: "https://images.unsplash.com/photo-1533202974917-a0656a877cb0?q=80&w=1000&auto=format&fit=crop", alt: "山水二" }
-    ]
-  }
-];
-
-// ==========================================
-// 素描作品 (SKETCHES)
-// ==========================================
-export const SKETCHES: GalleryItem[] = [
-  {
-    id: "sk-1",
-    title: "静物习作",
-    category: "素描",
-    medium: "炭笔/铅笔",
-    images: [{ src: "https://images.unsplash.com/photo-1608691535783-501b2a953503?q=80&w=800&auto=format&fit=crop", alt: "静物" }]
-  },
-  {
-    id: "sk-2",
-    title: "人物肖像",
-    category: "素描",
-    medium: "铅笔",
-    images: [{ src: "https://images.unsplash.com/photo-1596707328678-b649d264f331?q=80&w=800&auto=format&fit=crop", alt: "肖像" }]
-  },
-  {
-    id: "sk-3",
-    title: "人物速写",
-    category: "速写",
-    medium: "综合材料",
-    images: [
-      { src: "https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?q=80&w=800&auto=format&fit=crop", alt: "速写一" },
-      { src: "https://images.unsplash.com/photo-1595168393582-89518d6bf961?q=80&w=800&auto=format&fit=crop", alt: "速写二" },
-      { src: "https://images.unsplash.com/photo-1578301978018-3005759f48f7?q=80&w=800&auto=format&fit=crop", alt: "速写三" }
-    ]
-  }
-];
-
-// ==========================================
-// 设计作品 (DESIGN WORKS)
-// ==========================================
-export const DESIGN_WORKS: GalleryItem[] = [
-  {
-    id: "des-1",
-    title: "草莓饮品品牌设计",
-    category: "平面设计",
-    medium: "品牌形象",
-    description: "一套充满活力与自然气息的有机饮品视觉系统。",
-    images: [
-      { src: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=800&auto=format&fit=crop", alt: "包装展示" },
-      { src: "https://images.unsplash.com/photo-1632515949504-245362df5f4a?q=80&w=800&auto=format&fit=crop", alt: "周边设计" }
-    ]
-  },
-  {
-    id: "des-2",
-    title: "企业周年插画",
-    category: "商业插画",
-    medium: "海报设计",
-    description: "记录企业发展里程碑的叙事性视觉设计系列。",
-    images: [
-      { src: "https://images.unsplash.com/photo-1572059002124-e23414738961?q=80&w=800&auto=format&fit=crop", alt: "海报一" },
-      { src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800&auto=format&fit=crop", alt: "海报二" }
-    ]
-  }
-];
