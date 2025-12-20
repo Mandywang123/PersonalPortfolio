@@ -10,17 +10,17 @@ export const PORTFOLIO_DATA: PortfolioModule[] = [
       {
         groupTitle: "写意 · Ink Wash",
         artworks: [
-          { id: "cp-x-1", title: "梅花图", year: "2023", category: "写意", image: "https://i.imgs.ovh/2025/12/20/ClU0TH.jpeg", description: "笔墨恣意横斜，通过干湿浓淡的强烈对比展现梅花凌寒傲骨的生命力，探索传统水墨在现代视觉下的构成感。" },
-          { id: "cp-x-2", title: "意笔花卉", year: "2022", category: "写意", image: "https://i.imgs.ovh/2025/12/20/ClU7QU.jpeg", description: "简练的线条勾勒出花卉的生机，利用宣纸的渗润效果营造烟雨朦胧的意蕴。" },
-          { id: "cp-x-3", title: "国画写生", year: "2024", category: "写意", image: "https://i.imgs.ovh/2025/12/20/ClzunA.png", description: "深入自然山川进行实地考察，将写生的写实触感与传统文人画的虚实处理相结合，记录植物风景。" },
-          { id: "cp-x-4", title: "墨菊图", year: "2023", category: "写意", image: "https://i.imgs.ovh/2025/12/20/ClUOfQ.jpeg", description: "以浓淡相宜的水墨表现菊花的清高脱俗，泼墨技法下展现出独特的生命韵味。" },
+          { id: "cp-x-1", title: "梅花图", year: "2021", category: "写意", image: "https://i.imgs.ovh/2025/12/20/ClU0TH.jpeg", description: "笔墨恣意横斜，通过干湿浓淡的强烈对比展现梅花凌寒傲骨的生命力，探索传统水墨在现代视觉下的构成感。" },
+          { id: "cp-x-2", title: "意笔花卉", year: "2021", category: "写意", image: "https://i.imgs.ovh/2025/12/20/ClU7QU.jpeg", description: "简练的线条勾勒出花卉的生机，利用宣纸的渗润效果营造烟雨朦胧的意蕴。" },
+          { id: "cp-x-3", title: "国画写生", year: "2020", category: "写意", image: "https://i.imgs.ovh/2025/12/20/ClzunA.png", description: "深入自然山川进行实地考察，将写生的写实触感与传统文人画的虚实处理相结合，记录植物风景。" },
+          { id: "cp-x-4", title: "墨菊图", year: "2020", category: "写意", image: "https://i.imgs.ovh/2025/12/20/ClUOfQ.jpeg", description: "以浓淡相宜的水墨表现菊花的清高脱俗，泼墨技法下展现出独特的生命韵味。" },
         ]
       },
       {
         groupTitle: "工笔 · Meticulous",
         artworks: [
-          { id: "cp-g-1", title: "墨古石榴", year: "2022", category: "工笔", image: "https://i.imgs.ovh/2025/12/20/ClRGmN.png", description: "没骨的技法展示石榴果实色彩层层叠加，晶莹剔透，在极致细腻的刻画中寄托繁荣与丰盈的美好寓意。" },
-          { id: "cp-g-2", title: "花蝶小品", year: "2023", category: "工笔", image: "https://i.imgs.ovh/2025/12/20/ClTtJx.png", description: "精准勾勒花卉与蝴蝶的形态，设色雅致清新，捕捉自然界中细微而动人的和谐瞬间。" },
+          { id: "cp-g-1", title: "墨古石榴", year: "2021", category: "工笔", image: "https://i.imgs.ovh/2025/12/20/ClRGmN.png", description: "没骨的技法展示石榴果实色彩层层叠加，晶莹剔透，在极致细腻的刻画中寄托繁荣与丰盈的美好寓意。" },
+          { id: "cp-g-2", title: "花蝶小品", year: "2020", category: "工笔", image: "https://i.imgs.ovh/2025/12/20/ClTtJx.png", description: "精准勾勒花卉与蝴蝶的形态，设色雅致清新，捕捉自然界中细微而动人的和谐瞬间。" },
         ]
       },
       {
@@ -47,7 +47,7 @@ export const PORTFOLIO_DATA: PortfolioModule[] = [
       {
         groupTitle: "静物 · Still Life",
         artworks: [
-          { id: "ill-sl-1", title: "逆光花卉", year: "2020", category: "静物", image: "https://i.imgs.ovh/2025/12/20/ClT4l1.png", description: "记录光线穿透窗户、洒落在居家器物上的瞬间，光影层次丰富且温暖，赋予平凡日常以神圣的仪式感。" },
+          { id: "ill-sl-1", title: "逆光花卉", year: "2022", category: "静物", image: "https://i.imgs.ovh/2025/12/20/ClT4l1.png", description: "记录光线穿透窗户、洒落在居家器物上的瞬间，光影层次丰富且温暖，赋予平凡日常以神圣的仪式感。" },
           { id: "ill-sl-2", title: "郁金香习作", year: "2020", category: "静物", image: "https://i.imgs.ovh/2025/12/20/ClTYcY.jpeg", description: "直面生命衰落的过程，通过干枯细节与暗色调的精准刻画，呈现出一种凄美而庄重的静态美学，感悟时间流逝。" },
           { id: "ill-sl-3", title: "清晨的花束", year: "2020", category: "静物", image: "https://i.imgs.ovh/2025/12/20/ClTHm0.jpeg", description: "色调明快温馨，食物纹理细腻诱人，通过物件的组合勾勒出充满生活温情的早晨记忆，唤起感官的共鸣。" },
           { id: "ill-sl-4", title: "美食插画", year: "2020", category: "静物", image: "https://i.imgs.ovh/2025/12/20/ClTnLd.jpeg", description: "将静物进行抽象化块面拆解，探索色彩、形状与重力在平面上的动态平衡，体现了对构成主义设计语言的实验。" },
