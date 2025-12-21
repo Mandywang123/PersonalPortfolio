@@ -7,6 +7,11 @@ import * as THREE_LIB from 'three';
 
 const PARTICLE_COUNT = 3240;
 
+// Define Three.js components as any to avoid JSX intrinsic element errors in environments where R3F types are not globally registered
+const PointsTag = 'points' as any;
+const PointsMaterialTag = 'pointsMaterial' as any;
+const AmbientLightTag = 'ambientLight' as any;
+
 const generateUniformSphericalPositions = (count: number, radius: number) => {
   const points = new Float32Array(count * 3);
   for (let i = 0; i < count; i++) {
@@ -45,8 +50,10 @@ const RotatingParticleSphere = () => {
   });
 
   return (
-    <points ref={ref} geometry={geometry}>
-      <pointsMaterial
+    /* Fix: Using PointsTag to avoid JSX intrinsic element error */
+    <PointsTag ref={ref} geometry={geometry}>
+      {/* Fix: Using PointsMaterialTag to avoid JSX intrinsic element error */}
+      <PointsMaterialTag
         color="#C5A059"
         size={isMobile ? 0.03 : 0.0486}
         sizeAttenuation={true}
@@ -54,7 +61,7 @@ const RotatingParticleSphere = () => {
         depthWrite={true}
         blending={THREE_LIB.NormalBlending}
       />
-    </points>
+    </PointsTag>
   );
 };
 
@@ -63,7 +70,8 @@ const Hero: React.FC = () => {
     <section id="hero" className="relative w-full h-screen bg-[#F9F8F6] overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-80">
         <Canvas camera={{ position: [0, 0, 9], fov: 45 }} dpr={[1, 2]}>
-          <ambientLight intensity={1.5} />
+          {/* Fix: Using AmbientLightTag to avoid JSX intrinsic element error */}
+          <AmbientLightTag intensity={1.5} />
           <RotatingParticleSphere />
         </Canvas>
       </div>

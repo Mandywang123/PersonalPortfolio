@@ -17,8 +17,8 @@ const About: React.FC = () => {
                 个人简介 · About
             </span>
             
-            {/* 标题字号放大，改为金色，取消斜体，保持单排 */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-[#1C1917] mb-8 md:mb-12 leading-relaxed md:leading-tight whitespace-nowrap overflow-visible px-4">
+            {/* Removed whitespace-nowrap to fix mobile overflow and ensured centering */}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-[#1C1917] mb-8 md:mb-12 leading-snug md:leading-tight px-4 max-w-5xl mx-auto">
              探索 <span className="text-[#C5A059]">传统艺术</span> 与 <span className="text-[#C5A059]">现代设计</span> 的教学方向
             </h2>
             

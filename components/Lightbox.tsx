@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
 
@@ -15,6 +15,9 @@ interface LightboxProps {
 const Lightbox: React.FC<LightboxProps> = ({ images, currentIndex, isOpen, onClose, onPrev, onNext }) => {
   const [scale, setScale] = useState(1);
   const [dragEnabled, setDragEnabled] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const touchStartDist = useRef<number>(0);
+  const touchStartScale = useRef<number>(1);
 
   useEffect(() => {
     if (isOpen) {
@@ -26,9 +29,53 @@ const Lightbox: React.FC<LightboxProps> = ({ images, currentIndex, isOpen, onClo
     }
   }, [isOpen, currentIndex]);
 
+  // Handle pinch-to-zoom on mobile
+  useEffect(() => {
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 2) {
+        touchStartDist.current = Math.hypot(
+          e.touches[0].pageX - e.touches[1].pageX,
+          e.touches[0].pageY - e.touches[1].pageY
+        );
+        touchStartScale.current = scale;
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length === 2 && touchStartDist.current > 0) {
+        const currentDist = Math.hypot(
+          e.touches[0].pageX - e.touches[1].pageX,
+          e.touches[0].pageY - e.touches[1].pageY
+        );
+        const newScale = Math.min(Math.max(touchStartScale.current * (currentDist / touchStartDist.current), 1), 4);
+        setScale(newScale);
+        setDragEnabled(newScale > 1);
+      }
+    };
+
+    const handleTouchEnd = () => {
+      touchStartDist.current = 0;
+    };
+
+    if (isOpen) {
+      window.addEventListener('touchstart', handleTouchStart, { passive: false });
+      window.addEventListener('touchmove', handleTouchMove, { passive: false });
+      window.addEventListener('touchend', handleTouchEnd);
+    }
+
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [isOpen, scale]);
+
   const handleZoomIn = () => {
-    setScale(prev => Math.min(prev + 0.5, 4));
-    setDragEnabled(true);
+    setScale(prev => {
+      const next = Math.min(prev + 0.5, 4);
+      setDragEnabled(next > 1);
+      return next;
+    });
   };
 
   const handleZoomOut = () => {
@@ -112,6 +159,7 @@ const Lightbox: React.FC<LightboxProps> = ({ images, currentIndex, isOpen, onClo
 
           {/* Image Container */}
           <div 
+            ref={containerRef}
             className="w-full h-full flex items-center justify-center overflow-hidden touch-none"
             onClick={(e) => e.stopPropagation()}
           >
@@ -125,7 +173,7 @@ const Lightbox: React.FC<LightboxProps> = ({ images, currentIndex, isOpen, onClo
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ type: 'spring', damping: 30, stiffness: 250 }}
               drag={dragEnabled}
-              dragConstraints={{ top: -500, bottom: 500, left: -500, right: 500 }}
+              dragConstraints={{ top: -800, bottom: 800, left: -800, right: 800 }}
               className={`relative max-w-[90vw] max-h-[85vh] flex flex-col items-center ${dragEnabled ? 'cursor-move' : 'cursor-default'}`}
             >
               <img 
@@ -134,7 +182,7 @@ const Lightbox: React.FC<LightboxProps> = ({ images, currentIndex, isOpen, onClo
                 className="max-w-full max-h-[75vh] object-contain shadow-2xl pointer-events-none"
               />
               
-              {/* Info Overlay (only visible when not zoomed in significantly) */}
+              {/* Info Overlay */}
               <AnimatePresence>
                 {scale === 1 && (
                    <motion.div 
