@@ -13,32 +13,39 @@ const GroupSlider: React.FC<GroupSliderProps> = ({ group }) => {
   const artworks = group.artworks;
   const count = artworks.length;
 
-  // 三倍缓冲区实现无限循环
+  // 使用三倍缓冲区实现真正的环形无限循环 [Set A, Set B, Set C]
+  // 用户主要在 Set B (中间组) 活动
   const displayItems = [...artworks, ...artworks, ...artworks];
 
+  // 初始索引设在中间组的第一个 (即第 count 个索引)
   const [currentIndex, setCurrentIndex] = useState(count);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [isDragging, setIsDragging] = useState(false);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   
   const containerRef = useRef<HTMLDivElement>(null);
-  // 监控 60% 视口进入触发
+  // 当图片组 60% 进入视口时触发单次滑动
   const isInView = useInView(containerRef, { amount: 0.6, once: false });
   const hasTriggeredScroll = useRef(false);
 
-  // 处理无限循环的无感跳转
+  // 处理无限循环的跳转归位
   const handleAnimationComplete = () => {
+    // 如果已经滑出了中间组（Set B），则静默跳回中间组
     if (currentIndex < count) {
+      // 从 A 组 跳回 B 组对应位置
       setIsTransitioning(false);
       setCurrentIndex(currentIndex + count);
     } else if (currentIndex >= count * 2) {
+      // 从 C 组 跳回 B 组对应位置
       setIsTransitioning(false);
       setCurrentIndex(currentIndex - count);
     }
   };
 
+  // 恢复过渡状态
   useEffect(() => {
     if (!isTransitioning) {
+      // 必须确保在重绘之后恢复过渡，以免跳转过程产生位移动画
       const timer = requestAnimationFrame(() => {
         setIsTransitioning(true);
       });
@@ -54,7 +61,7 @@ const GroupSlider: React.FC<GroupSliderProps> = ({ group }) => {
     setCurrentIndex((prev) => prev - 1);
   }, []);
 
-  // 滚动触发逻辑
+  // 滚动自动触发逻辑
   useEffect(() => {
     if (isInView) {
       if (!hasTriggeredScroll.current) {
@@ -87,7 +94,9 @@ const GroupSlider: React.FC<GroupSliderProps> = ({ group }) => {
     }
   };
 
+  // 映射回原始数据的索引，供 Lightbox 和分页符使用
   const originalIndex = currentIndex % count;
+
   const lightboxImages = artworks.map(art => ({
     src: art.image,
     alt: art.title,
@@ -97,7 +106,7 @@ const GroupSlider: React.FC<GroupSliderProps> = ({ group }) => {
   return (
     <div className="mb-24 md:mb-40 last:mb-0" ref={containerRef}>
       <div className="relative group/slider">
-        {/* Navigation Buttons */}
+        {/* 桌面端导航按钮 */}
         <div className="absolute top-[40%] left-4 md:left-12 z-30 -translate-y-1/2 opacity-0 group-hover/slider:opacity-100 transition-opacity duration-700 hidden md:block">
             <button 
               onClick={(e) => { e.stopPropagation(); handleManualNav('prev'); }} 
@@ -115,7 +124,7 @@ const GroupSlider: React.FC<GroupSliderProps> = ({ group }) => {
             </button>
         </div>
 
-        {/* Track Container */}
+        {/* 滚动轨道 */}
         <div className="relative overflow-hidden pt-4 pb-8 md:pb-12 touch-pan-y">
           <motion.div 
             className="flex items-center cursor-grab active:cursor-grabbing" 
@@ -126,8 +135,8 @@ const GroupSlider: React.FC<GroupSliderProps> = ({ group }) => {
             onDragStart={() => setIsDragging(true)}
             onDragEnd={handleDragEnd}
             onAnimationComplete={handleAnimationComplete}
-            animate={{ x: `-${currentIndex * 100}vw` }}
-            transition={isTransitioning ? { type: "spring", stiffness: 85, damping: 22, mass: 1 } : { duration: 0 }}
+            animate={{ x: `calc(-${currentIndex * 100}vw)` }}
+            transition={isTransitioning ? { type: "spring", stiffness: 70, damping: 20, mass: 1 } : { duration: 0 }}
             style={{ width: `${displayItems.length * 100}vw` }}
           >
             {displayItems.map((item, index) => (
@@ -135,28 +144,26 @@ const GroupSlider: React.FC<GroupSliderProps> = ({ group }) => {
                 key={`${item.id}-${index}`} 
                 className="w-screen flex flex-col items-center px-4 md:px-0 select-none"
               >
-                {/* 
-                  移除 CSS transition-all 避免与 Framer Motion 冲突，
-                  简化视觉状态，仅保留微小的透明度差异，确保滑动流畅。
-                */}
                 <div 
                   className={`
                     relative flex justify-center items-center mx-auto
                     h-[45vh] md:h-[75vh] w-[85vw] md:w-full md:max-w-6xl
-                    cursor-zoom-in transition-opacity duration-700
-                    ${index === currentIndex ? 'opacity-100' : 'opacity-40'}
+                    transition-all duration-1000 ease-out cursor-zoom-in
+                    ${index === currentIndex ? 'scale-100 opacity-100' : 'scale-90 opacity-20'}
                   `}
                   onClick={handleImageClick}
                 >
-                  <img 
+                  <motion.img 
                     src={item.image} 
                     alt={item.title} 
                     className="h-full w-auto max-w-full object-contain drop-shadow-2xl pointer-events-none"
+                    initial={false}
+                    animate={{ scale: index === currentIndex ? 1 : 1.05 }}
+                    transition={{ duration: 1.2 }}
                   />
                 </div>
 
-                {/* 描述文本部分，同样移除多余动画，让其跟随滑动轨迹 */}
-                <div className={`mt-10 md:mt-16 text-center max-w-3xl mx-auto px-6 transition-opacity duration-700 ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}>
+                <div className={`mt-10 md:mt-16 text-center transition-all duration-1000 max-w-3xl mx-auto px-6 ${index === currentIndex ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                    <h3 className="text-xl md:text-4xl font-serif text-[#1C1917] mb-2 md:mb-4 tracking-tighter">
                      {item.title}
                    </h3>
@@ -168,7 +175,7 @@ const GroupSlider: React.FC<GroupSliderProps> = ({ group }) => {
         </div>
       </div>
       
-      {/* Pagination dots */}
+      {/* 分页点指示器 */}
       <div className="flex justify-center items-center gap-6 mt-8">
         <div className="flex gap-3">
           {artworks.map((_, idx) => (
@@ -221,7 +228,7 @@ const CarouselSection: React.FC<Props> = ({ module }) => {
           className="text-[2rem] md:text-[6.5rem] font-serif text-[#1C1917] tracking-tighter leading-tight"
         >
           {module.moduleTitle}
-        </h2>
+        </motion.h2>
       </div>
 
       <div className="space-y-24 md:space-y-32">
