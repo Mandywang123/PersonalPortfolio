@@ -50,7 +50,7 @@ export const PORTFOLIO_DATA: PortfolioModule[] = [
           { id: "ill-sl-1", title: "逆光花卉", year: "2022", category: "静物", image: "https://i.imgs.ovh/2025/12/20/ClT4l1.png", description: "记录光线穿透窗户、洒落在居家器物上的瞬间，光影层次丰富且温暖，赋予平凡日常以神圣的仪式感。" },
           { id: "ill-sl-2", title: "郁金香习作", year: "2020", category: "静物", image: "https://i.imgs.ovh/2025/12/20/ClTYcY.jpeg", description: "直面生命衰落的过程，通过干枯细节与暗色调的精准刻画，呈现出一种凄美而庄重的静态美学，感悟时间流逝。" },
           { id: "ill-sl-3", title: "清晨的花束", year: "2020", category: "静物", image: "https://i.imgs.ovh/2025/12/20/ClTHm0.jpeg", description: "色调明快温馨，食物纹理细腻诱人，通过物件的组合勾勒出充满生活温情的早晨记忆，唤起感官的共鸣。" },
-          { id: "ill-sl-4", title: "美食插画", year: "2020", category: "静物", image: "https://i.imgs.ovh/2025/12/20/ClTnLd.jpeg", description: "将静物进行抽象化块面拆解，探索色彩、形状与重力在平面上的动态平衡，体现了对构成主义设计语言的实验。" },
+          { id: "ill-sl-4", title: "美食插画", year: "2022", category: "静物", image: "https://i.imgs.ovh/2025/12/20/ClTnLd.jpeg", description: "将静物进行抽象化块面拆解，探索色彩、形状与重力在平面上的动态平衡，体现了对构成主义设计语言的实验。" },
         ]
       },
       {
@@ -85,25 +85,25 @@ export const PORTFOLIO_DATA: PortfolioModule[] = [
       {
         groupTitle: "折页 · Layouts",
         artworks: [
-          { id: "des-z-1", title: "宣传折页 - 品牌形象", year: "2024", category: "折页", image: "https://i.imgs.ovh/2025/12/20/ClTITr.png", description: "现代极简的设计风格，利用网格系统对品牌信息进行层级化梳理，色彩分区明确，实现了美观与功能性的高度平衡。" },
-          { id: "des-z-2", title: "宣传折页 - 内部预览", year: "2024", category: "折页", image: "https://i.imgs.ovh/2025/12/20/ClTK1M.png", description: "展示了折页的展开效果与信息流向设计，通过视觉引导引导读者顺畅地获取关键资讯，提升了用户阅读体验。" },
+          { id: "des-z-1", title: "校园宣传折页·正面", year: "2024", category: "折页", image: "https://i.imgs.ovh/2025/12/20/ClTITr.png", description: "现代极简的设计风格，利用网格系统对品牌信息进行层级化梳理，色彩分区明确，实现了美观与功能性的高度平衡。" },
+          { id: "des-z-2", title: "校园宣传折页·正面", year: "2024", category: "折页", image: "https://i.imgs.ovh/2025/12/20/ClTK1M.png", description: "展示了折页的展开效果与信息流向设计，通过视觉引导引导读者顺畅地获取关键资讯，提升了用户阅读体验。" },
         ]
       },
       {
         groupTitle: "手册 · Brand Identity",
         artworks: [
-          { id: "des-s-1", title: "入校手册 - 封面设计", year: "2025", category: "手册", image: "https://i.imgs.ovh/2025/12/20/ClABz1.png", description: "充满趣味性的视觉叙事，结合手绘元素与活泼的版式编排，为新生建立了轻松且富有亲和力的第一印象。" },
-          { id: "des-s-2", title: "入校手册 - 章节内页", year: "2025", category: "手册", image: "https://i.imgs.ovh/2025/12/20/ClAx7b.png", description: "通过跨页大图与精致的小插画结合，将繁杂的规则转化为生动的视觉故事，增加了手册的收藏价值与传播力。" },
-          { id: "des-s-3", title: "入校手册 - 地图指引", year: "2025", category: "手册", image: "https://i.imgs.ovh/2025/12/20/ClANMM.png", description: "扁平化的插画风格地图，通过色彩识别系统优化了校园空间的导视功能，集艺术美感与实用导航于一体。" },
-          { id: "des-s-4", title: "入校手册 - 详情页", year: "2025", category: "手册", image: "https://i.imgs.ovh/2025/12/20/ClThPh.png", description: "细节处见匠心，文字排版疏密有致，利用负空间提升了阅读的节奏感，展现了扎实的商业排版功底。" },
+          { id: "des-s-1", title: "新手侦探入校手册 01", year: "2025", category: "手册", image: "https://i.imgs.ovh/2025/12/20/ClABz1.png", description: "充满趣味性的视觉叙事，结合手绘元素与活泼的版式编排，为新生建立了轻松且富有亲和力的第一印象。" },
+          { id: "des-s-2", title: "新手侦探入校手册 02", year: "2025", category: "手册", image: "https://i.imgs.ovh/2025/12/20/ClAx7b.png", description: "通过跨页大图与精致的小插画结合，将繁杂的规则转化为生动的视觉故事，增加了手册的收藏价值与传播力。" },
+          { id: "des-s-3", title: "新手侦探入校手册 03", year: "2025", category: "手册", image: "https://i.imgs.ovh/2025/12/20/ClANMM.png", description: "扁平化的插画风格地图，通过色彩识别系统优化了校园空间的导视功能，集艺术美感与实用导航于一体。" },
+          { id: "des-s-4", title: "新手侦探入校手册 04", year: "2025", category: "手册", image: "https://i.imgs.ovh/2025/12/20/ClThPh.png", description: "细节处见匠心，文字排版疏密有致，利用负空间提升了阅读的节奏感，展现了扎实的商业排版功底。" },
         ]
       },
       {
         groupTitle: "导览 · Posters",
         artworks: [
-          { id: "des-p-1", title: "活动海报 - 动态视角", year: "2025", category: "导览海报", image: "https://i.imgs.ovh/2025/12/20/ClTufa.png", description: "打破传统海报的平面限制，通过错位的几何图形与大胆的撞色设计建立视觉张力，传达出活动现场的活力。" },
-          { id: "des-p-2", title: "活动海报 - 细节呈现", year: "2025", category: "导览海报", image: "https://i.imgs.ovh/2025/12/20/ClTx8t.png", description: "运用具有现代感的图形语言重构传统元素，信息展示清晰直观，在街头环境中具有极强的视觉捕捉力。" },
-          { id: "des-p-3", title: "活动海报 - 完整展示", year: "2025", category: "导览海报", image: "https://i.imgs.ovh/2025/12/20/Clz7QM.png", description: "品牌色调的贯穿应用增强了视觉识别的一致性，通过创新的版式设计建立了独特的品牌叙事风格。" },
+          { id: "des-p-1", title: "校园活动折页海报·正面", year: "2025", category: "导览海报", image: "https://i.imgs.ovh/2025/12/20/ClTufa.png", description: "打破传统海报的平面限制，通过错位的几何图形与大胆的撞色设计建立视觉张力，传达出活动现场的活力。" },
+          { id: "des-p-2", title: "校园活动折页海报·背面", year: "2025", category: "导览海报", image: "https://i.imgs.ovh/2025/12/20/ClTx8t.png", description: "运用具有现代感的图形语言重构传统元素，信息展示清晰直观，在街头环境中具有极强的视觉捕捉力。" },
+          { id: "des-p-3", title: "校园活动折页海报·展示", year: "2025", category: "导览海报", image: "https://i.imgs.ovh/2025/12/20/Clz7QM.png", description: "品牌色调的贯穿应用增强了视觉识别的一致性，通过创新的版式设计建立了独特的品牌叙事风格。" },
         ]
       }
     ]
@@ -116,8 +116,8 @@ export const PORTFOLIO_DATA: PortfolioModule[] = [
       {
         groupTitle: "虚拟建模 · Modeling",
         artworks: [
-          { id: "3d-1", title: "人物头部 - 数字建模", year: "2023", category: "人物建模", image: "https://i.imgs.ovh/2025/12/20/ClbN3L.png", description: "探索PBR材质渲染，细腻的皮肤纹理与漫反射效果展现了对写实数字肖像的把控力，建模布线规范且精细。" },
-          { id: "3d-2", title: "机械形象 - 概念设计", year: "2024", category: "硬表面建模", image: "https://i.imgs.ovh/2025/12/20/Clz0Tx.png", description: "机械金属零件的精密契合，模拟蒸汽朋克风格下的动力美学，细致的磨损材质表达赋予了虚拟模型时间的沉淀感。" },
+          { id: "3d-1", title: "人物头部 设计-模型-渲染", year: "2023", category: "人物建模", image: "https://i.imgs.ovh/2025/12/20/ClbN3L.png", description: "探索PBR材质渲染，细腻的皮肤纹理与漫反射效果展现了对写实数字肖像的把控力，建模布线规范且精细。" },
+          { id: "3d-2", title: "动物形象 宣传设计-表情设计-模型", year: "2024", category: "硬表面建模", image: "https://i.imgs.ovh/2025/12/20/Clz0Tx.png", description: "机械金属零件的精密契合，模拟蒸汽朋克风格下的动力美学，细致的磨损材质表达赋予了虚拟模型时间的沉淀感。" },
         ]
       }
     ]
@@ -127,10 +127,10 @@ export const PORTFOLIO_DATA: PortfolioModule[] = [
 export const PERSONAL_INFO = {
   name: "王菁瑶",
   enName: "Wang Jingyao",
-  title: "艺术教育者 / 跨界美术作品集",
+  title: "艺术教育者",
   email: "wangjingyao@example.com",
   intro: "深耕国画领域，兼修素描造型、平面设计、插画创作、 3D 建模和摄影，引导学生感知传统美学与现代艺术的交融之美，激发跨文化艺术表达力。",
   education: "苏州大学 中国画专业 · 学士",
   portfolioTitle: "Portfolio Selection",
-  year: "2024 - 2025",
+  year: "",
 };

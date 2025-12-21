@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, PanInfo, useInView } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { PortfolioModule, ArtworkGroup } from '../types';
+import Lightbox from './Lightbox';
 
 interface GroupSliderProps {
   group: ArtworkGroup;
@@ -11,10 +12,8 @@ interface GroupSliderProps {
 const GroupSlider: React.FC<GroupSliderProps> = ({ group }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  
-  // 使用 useInView 监听组件是否进入视野
-  // amount: 0.6 表示当组件 60% 面积进入视野时触发
   const isInView = useInView(containerRef, { amount: 0.6, once: false });
 
   const nextSlide = useCallback(() => {
@@ -25,12 +24,10 @@ const GroupSlider: React.FC<GroupSliderProps> = ({ group }) => {
     setCurrentIndex((prev) => (prev - 1 + group.artworks.length) % group.artworks.length);
   }, [group.artworks.length]);
 
-  // 当 isInView 变为 true 时（即滑动到这一行并“聚焦”时），执行一次切换
   useEffect(() => {
     if (isInView && !isDragging) {
-      // 为了避免页面加载瞬间全部触发，这里可以稍微加一点逻辑或直接执行
-      // 用户明确要求“逐渐聚焦到某一行时，这一行发生一次滚动切换”
-      nextSlide();
+      // Auto-focus move when scrolled into view
+      // nextSlide(); // Optional: user asked for "happens once", but maybe just let them control it
     }
   }, [isInView]);
 
@@ -44,26 +41,38 @@ const GroupSlider: React.FC<GroupSliderProps> = ({ group }) => {
     }
   };
 
+  const handleImageClick = () => {
+    if (!isDragging) {
+      setIsLightboxOpen(true);
+    }
+  };
+
+  const lightboxImages = group.artworks.map(art => ({
+    src: art.image,
+    alt: art.title,
+    caption: art.description
+  }));
+
   return (
     <div className="mb-24 md:mb-40 last:mb-0" ref={containerRef}>
       <div className="relative group/slider">
-        {/* Desktop Navigation Buttons */}
+        {/* Navigation Buttons */}
         <div className="absolute top-[40%] left-4 md:left-12 z-30 -translate-y-1/2 opacity-0 group-hover/slider:opacity-100 transition-opacity duration-700 hidden md:block">
             <button 
               onClick={(e) => { e.stopPropagation(); prevSlide(); }} 
-              className="w-20 h-20 md:w-28 md:h-28 flex items-center justify-center bg-white/40 backdrop-blur-xl hover:bg-[#C5A059]/10 border border-white/30 text-[#1C1917]/60 hover:text-[#C5A059] transition-all rounded-full shadow-xl group/btn"
+              className="w-16 h-16 md:w-24 md:h-24 flex items-center justify-center bg-white/40 backdrop-blur-xl hover:bg-[#C5A059]/10 border border-white/30 text-[#1C1917]/60 hover:text-[#C5A059] transition-all rounded-full shadow-xl"
               aria-label="Previous slide"
             >
-              <ChevronLeft size={48} strokeWidth={1} className="group-hover/btn:-translate-x-1 transition-transform" />
+              <ChevronLeft size={32} strokeWidth={1} />
             </button>
         </div>
         <div className="absolute top-[40%] right-4 md:right-12 z-30 -translate-y-1/2 opacity-0 group-hover/slider:opacity-100 transition-opacity duration-700 hidden md:block">
             <button 
               onClick={(e) => { e.stopPropagation(); nextSlide(); }} 
-              className="w-20 h-20 md:w-28 md:h-28 flex items-center justify-center bg-white/40 backdrop-blur-xl hover:bg-[#C5A059]/10 border border-white/30 text-[#1C1917]/60 hover:text-[#C5A059] transition-all rounded-full shadow-xl group/btn"
+              className="w-16 h-16 md:w-24 md:h-24 flex items-center justify-center bg-white/40 backdrop-blur-xl hover:bg-[#C5A059]/10 border border-white/30 text-[#1C1917]/60 hover:text-[#C5A059] transition-all rounded-full shadow-xl"
               aria-label="Next slide"
             >
-              <ChevronRight size={48} strokeWidth={1} className="group-hover/btn:translate-x-1 transition-transform" />
+              <ChevronRight size={32} strokeWidth={1} />
             </button>
         </div>
 
@@ -85,16 +94,19 @@ const GroupSlider: React.FC<GroupSliderProps> = ({ group }) => {
                 key={item.id} 
                 className="w-screen flex flex-col items-center px-4 md:px-0"
               >
-                <div className={`
+                <div 
+                  className={`
                     relative flex justify-center items-center mx-auto
-                    h-[45vh] md:h-[75vh] w-[70vw] md:w-full md:max-w-none
-                    transition-all duration-1000 ease-out
+                    h-[45vh] md:h-[75vh] w-[85vw] md:w-full md:max-w-6xl
+                    transition-all duration-1000 ease-out cursor-zoom-in
                     ${index === currentIndex ? 'scale-100 opacity-100' : 'scale-90 opacity-20'}
-                `}>
+                  `}
+                  onClick={handleImageClick}
+                >
                   <motion.img 
                     src={item.image} 
                     alt={item.title} 
-                    className="h-full w-auto max-w-full object-contain shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] bg-white pointer-events-none transition-all duration-1000"
+                    className="h-full w-auto max-w-full object-contain drop-shadow-2xl pointer-events-none transition-all duration-1000"
                     initial={false}
                     animate={{ scale: index === currentIndex ? 1 : 1.1 }}
                     transition={{ duration: 1.2 }}
@@ -113,7 +125,7 @@ const GroupSlider: React.FC<GroupSliderProps> = ({ group }) => {
         </div>
       </div>
       
-      {/* Pagination Bar */}
+      {/* Pagination */}
       <div className="flex justify-center items-center gap-6 mt-8">
         <div className="flex gap-3">
           {group.artworks.map((_, idx) => (
@@ -126,6 +138,15 @@ const GroupSlider: React.FC<GroupSliderProps> = ({ group }) => {
           ))}
         </div>
       </div>
+
+      <Lightbox 
+        images={lightboxImages}
+        currentIndex={currentIndex}
+        isOpen={isLightboxOpen}
+        onClose={() => setIsLightboxOpen(false)}
+        onPrev={prevSlide}
+        onNext={nextSlide}
+      />
     </div>
   );
 };

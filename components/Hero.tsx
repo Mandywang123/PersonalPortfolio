@@ -1,7 +1,7 @@
 
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { PERSONAL_INFO } from '../constants';
 import * as THREE_LIB from 'three';
 
@@ -22,8 +22,13 @@ const generateUniformSphericalPositions = (count: number, radius: number) => {
 
 const RotatingParticleSphere = () => {
   const ref = useRef<THREE_LIB.Points>(null);
-  const sphereRadius = 3.42;
-  const positions = useMemo(() => generateUniformSphericalPositions(PARTICLE_COUNT, sphereRadius), []);
+  const { viewport } = useThree();
+  
+  // Responsive radius based on viewport width
+  const isMobile = viewport.width < 5;
+  const sphereRadius = isMobile ? 1.8 : 3.42;
+
+  const positions = useMemo(() => generateUniformSphericalPositions(PARTICLE_COUNT, sphereRadius), [sphereRadius]);
   const geometry = useMemo(() => {
     const geo = new THREE_LIB.BufferGeometry();
     geo.setAttribute('position', new THREE_LIB.BufferAttribute(positions, 3));
@@ -43,7 +48,7 @@ const RotatingParticleSphere = () => {
     <points ref={ref} geometry={geometry}>
       <pointsMaterial
         color="#C5A059"
-        size={0.0486}
+        size={isMobile ? 0.03 : 0.0486}
         sizeAttenuation={true}
         transparent={false}
         depthWrite={true}
@@ -83,7 +88,6 @@ const Hero: React.FC = () => {
               </span>
             </motion.div>
             
-            {/* 英文名字号放大10%，从 6rem 调整为 6.6rem */}
             <h1 className="text-4xl sm:text-5xl md:text-[6.6rem] font-serif text-[#1C1917] mb-8 md:mb-16 tracking-tighter leading-tight select-none whitespace-nowrap overflow-visible">
               <motion.span
                 initial={{ opacity: 0, y: 60 }}
