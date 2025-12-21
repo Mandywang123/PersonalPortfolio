@@ -128,7 +128,7 @@ export const PERSONAL_INFO = {
   name: "王菁瑶",
   enName: "Wang Jingyao",
   title: "艺术教育者",
-  email: "wangjingyao@example.com",
+  email: "431864552@qq.com",
   intro: "深耕国画领域，兼修素描造型、平面设计、插画创作、 3D 建模和摄影，引导学生感知传统美学与现代艺术的交融之美，激发跨文化艺术表达力。",
   education: "苏州大学 中国画专业 · 学士",
   portfolioTitle: "Portfolio Selection",

@@ -12,9 +12,9 @@ const Footer: React.FC = () => {
         </a>
         
         <div className="flex justify-center gap-8 mb-12">
-            <span className="text-xs uppercase tracking-widest hover:text-[#C5A059] cursor-pointer transition-colors">Instagram</span>
-            <span className="text-xs uppercase tracking-widest hover:text-[#C5A059] cursor-pointer transition-colors">Behance</span>
-            <span className="text-xs uppercase tracking-widest hover:text-[#C5A059] cursor-pointer transition-colors">LinkedIn</span>
+            <span className="text-xs uppercase tracking-widest hover:text-[#C5A059] cursor-pointer transition-colors"></span>
+            <span className="text-xs uppercase tracking-widest hover:text-[#C5A059] cursor-pointer transition-colors"></span>
+            <span className="text-xs uppercase tracking-widest hover:text-[#C5A059] cursor-pointer transition-colors"></span>
         </div>
 
         <p className="text-[10px] text-[#57534E] uppercase tracking-widest">
